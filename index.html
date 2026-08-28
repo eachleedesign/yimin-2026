@@ -32,13 +32,16 @@ header .d b{color:var(--ink);font-size:1.35rem;font-weight:500;letter-spacing:-.
 header .art{margin:0 calc(var(--hpad)*-1)}
 
 /* 導覽 */
-nav{position:sticky;top:0;z-index:60;background:var(--ink);overflow-x:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav ul{display:flex;list-style:none;padding:0 calc(var(--hpad) - 6px);min-width:max-content}
-nav a{display:block;padding:15px 14px;color:#B4C3CE;text-decoration:none;font-size:.92rem;font-weight:700;white-space:nowrap;border-bottom:4px solid transparent}
-nav a.on{color:#fff;border-bottom-color:var(--blueD)}
+nav{background:var(--ink);padding:18px var(--hpad) 20px}
+nav p{color:#8FA2B0;font-size:.74rem;font-weight:700;letter-spacing:.14em;margin-bottom:12px}
+nav ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+nav a{display:block;padding:12px 16px;min-height:46px;line-height:1.6;
+  color:#D6DFE6;text-decoration:none;font-size:.92rem;font-weight:700;
+  background:#111C24;border:1.5px solid #2A3A46;border-radius:999px}
+nav a.on{background:var(--blue);border-color:var(--blue);color:#fff}
+nav a:focus-visible{outline:3px solid #7FC4FF;outline-offset:2px}
 
-section{padding:30px var(--hpad) 6px;scroll-margin-top:56px}
+section{padding:30px var(--hpad) 6px;scroll-margin-top:12px}
 h2{font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:1.35;margin-bottom:4px}
 .lede{color:var(--grey);font-size:.9rem;margin-bottom:16px}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:12px}
@@ -160,6 +163,14 @@ footer li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:.92rem;
 footer li em{font-style:normal;color:var(--blueD);font-weight:700}
 footer small{font-size:.72rem;line-height:1.7;display:block;padding-bottom:52px}
 
+#top{position:fixed;left:12px;bottom:12px;z-index:80;display:none;align-items:center;gap:7px;
+  background:var(--blue);color:#fff;border:none;border-radius:999px;
+  font-family:var(--body);font-weight:700;font-size:.86rem;
+  padding:0 18px 0 14px;min-height:52px;cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,.3)}
+#top.show{display:flex}
+#top b{font-size:1.05rem;line-height:1}
+#top:focus-visible{outline:3px solid #7FC4FF;outline-offset:2px}
 #fs{position:fixed;right:12px;bottom:12px;z-index:80;display:flex;align-items:center;gap:2px;
   background:var(--ink);border-radius:999px;padding:4px 10px 4px 4px;box-shadow:0 4px 18px rgba(0,0,0,.34)}
 #fs button{font-family:var(--body);font-weight:700;color:#B4C3CE;background:none;border:none;border-radius:999px;
@@ -184,7 +195,9 @@ html{scroll-behavior:smooth}
   <div class="art"><img id="hero" alt=""></div>
 </header>
 
-<nav><ul>
+<nav>
+  <p>目　錄</p>
+  <ul>
   <li><a href="#bus">我搭哪一車</a></li>
   <li><a href="#time">當天時程</a></li>
   <li><a href="#rite">接神牌</a></li>
@@ -192,7 +205,8 @@ html{scroll-behavior:smooth}
   <li><a href="#enter">下車進場</a></li>
   <li><a href="#wear">穿什麼帶什麼</a></li>
   <li><a href="#more">其他資料</a></li>
-</ul></nav>
+  </ul>
+</nav>
 
 <main>
 
@@ -347,6 +361,8 @@ html{scroll-behavior:smooth}
 
 </main>
 
+<button type="button" id="top" aria-label="回到頁首"><b>▲</b>回到頁首</button>
+
 <div id="fs" role="group" aria-label="調整字級">
   <button type="button" class="s1" data-fs="" aria-pressed="true" aria-label="標準字級">字</button>
   <button type="button" class="s2" data-fs="l" aria-pressed="false" aria-label="大字級">字</button>
@@ -457,6 +473,17 @@ document.querySelectorAll("#fs button").forEach(b=>b.addEventListener("click",()
   if(v) document.documentElement.setAttribute("data-fs",v);
   else document.documentElement.removeAttribute("data-fs");
 }));
+
+const topBtn=document.getElementById("top");
+topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+let ticking=false;
+addEventListener("scroll",()=>{
+  if(ticking) return; ticking=true;
+  requestAnimationFrame(()=>{
+    topBtn.classList.toggle("show", scrollY > 600);
+    ticking=false;
+  });
+},{passive:true});
 
 const links=[...document.querySelectorAll("nav a")];
 const io = new IntersectionObserver(es=>es.forEach(e=>{
