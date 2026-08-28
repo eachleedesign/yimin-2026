@@ -113,18 +113,19 @@ h2{font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:1.35;
 .slot b{font-size:.92rem}
 .slot.h{background:#EEF3F8;border-style:dashed;border-color:#9FBBD4}
 .slot.h b{color:#2C5C86}
-.rig{position:relative;min-height:100%}
+.rig{position:relative;min-height:100%;overflow:visible}
 .rig s{position:absolute;top:0;bottom:0;width:5px;background:var(--ink);text-decoration:none}
 .rig s.a{left:2px}.rig s.b{right:2px}
-.rig u{position:absolute;left:-4px;right:-4px;height:5px;background:var(--ink);text-decoration:none}
+.rig u{position:absolute;left:-3px;right:-3px;height:5px;background:var(--ink);text-decoration:none}
 .rig u.a{top:12px}.rig u.b{bottom:12px}
 .rig .bd{position:absolute;top:18px;bottom:18px;left:2px;right:2px;border:1.5px solid var(--ink);background:#fff;display:flex;flex-direction:column}
 .rig .bd div{border-bottom:1.5px solid var(--ink)}
 .rig .bd div:last-child{border-bottom:none}
-.rig .f{flex:0 0 46%;padding:5px;display:flex}
+.rig .f{flex:0 0 33%;padding:5px;display:flex;flex-direction:column;gap:5px;justify-content:center}
 .rig .f b{flex:1;background:var(--blue);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-weight:900;font-size:.74rem;line-height:1.4;text-align:center}
-.rig .m{flex:0 0 15%;display:grid;place-items:center;font-size:.6rem;font-weight:700}
+  font-family:var(--display);font-weight:900;font-size:.8rem;line-height:1.2;text-align:center}
+.rig .m{flex:0 0 31%;background:var(--ink);display:grid;place-items:center}
+.rig .m i{font-style:normal;font-family:var(--display);font-weight:900;font-size:.86rem;color:#fff;white-space:nowrap}
 .rig .r{flex:1}
 .dir{text-align:center;font-size:.72rem;font-weight:700;color:var(--blue);letter-spacing:.1em;margin-bottom:8px}
 
@@ -144,7 +145,7 @@ figure{margin:0}
 figure img{border-radius:12px;border:1px solid var(--line)}
 figcaption{font-size:.72rem;color:var(--grey);margin-top:6px}
 .pins{display:grid;gap:10px;margin-top:12px}
-.pins div{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.pins>div{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
 .pins s{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;color:#fff;font-size:.78rem;font-weight:700;text-decoration:none}
 .pins b{display:block;font-size:.95rem}
 .pins p{font-size:.82rem;color:var(--grey)}
@@ -266,7 +267,7 @@ html{scroll-behavior:smooth}
       <div class="c" id="pl"></div>
       <div class="rig">
         <s class="a"></s><s class="b"></s><u class="a"></u><u class="b"></u>
-        <div class="bd"><div class="f"><b>局長<br>爐主</b></div><div class="m">義民爺</div><div class="r"></div></div>
+        <div class="bd"><div class="f"><b>局長</b><b>爐主</b></div><div class="m"><i>義民爺</i></div><div class="r"></div></div>
       </div>
       <div class="c" id="pr"></div>
     </div>
